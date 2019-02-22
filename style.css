@@ -1,0 +1,14 @@
+#canvas{
+    margin: auto;
+    background: #ececec;
+    width: 100%;
+}
+
+.btn-disable {
+    color: #ffffff;
+}
+
+a#text1, a#text2, a#text3 {
+    text-decoration: none;
+    color: inherit;
+}
