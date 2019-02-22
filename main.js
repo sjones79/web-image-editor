@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 
  let img = new Image();
  let fileName = '';
+ let selectedTextOption = '';
 
  const downloadBtn = document.querySelector('#download-btn');
  const uploadFile = document.querySelector('#upload-file');
@@ -15,7 +16,6 @@ const ctx = canvas.getContext('2d');
  // Add filters and effects
  document.addEventListener('click', (e) => {
      if(e.target.classList.contains('filter-btn')){
-        console.log(" got it");
         if(e.target.classList.contains('rotate-add')){
             Caman('#canvas', img, function() {
                 this.rotate(90).render();
@@ -158,7 +158,7 @@ const ctx = canvas.getContext('2d');
         }
      }
      //Do stuff with text options
-
+     
      if(e.target.classList.contains('text1')){
          if(document.querySelector('#text-1-container').classList.contains('border-success')){
             document.querySelector('#text-1-container').classList.remove('border-success');
@@ -170,6 +170,7 @@ const ctx = canvas.getContext('2d');
             document.querySelector('#text-3-container').classList.remove('border-success');
          }
         document.querySelector('#text-1-container').classList.add('border-success');
+        selectedTextOption = document.querySelector('#text-1-container .card-text').innerText;
         
      }
      if(e.target.classList.contains('text2')){
@@ -183,6 +184,7 @@ const ctx = canvas.getContext('2d');
             document.querySelector('#text-3-container').classList.remove('border-success');
          }
         document.querySelector('#text-2-container').classList.add('border-success');
+        selectedTextOption = document.querySelector('#text-2-container .card-text').innerText;
     }
     if(e.target.classList.contains('text3')){
         if(document.querySelector('#text-1-container').classList.contains('border-success')){
@@ -195,6 +197,7 @@ const ctx = canvas.getContext('2d');
             document.querySelector('#text-3-container').classList.remove('border-success');
          }
         document.querySelector('#text-3-container').classList.add('border-success');
+        selectedTextOption = document.querySelector('#text-3-container .card-text').innerText;
     }
  });
 
@@ -233,10 +236,13 @@ const ctx = canvas.getContext('2d');
              canvas.width = img.width;
              canvas.height = img.height;
              ctx.drawImage(img, 0, 0, img.width, img.height);
-             ctx.font = '148px Comic Sans MS';
-             ctx.textAlign = "center";
-             ctx.fillStyle = "white";
-             ctx.fillText("Scott", canvas.width/2, canvas.height/2);
+             if(selectedTextOption.length > 0 ){
+                ctx.font = '30em Verdana';
+                ctx.textAlign = "center";
+                ctx.fillStyle = "white";
+                ctx.fillText(selectedTextOption, canvas.width/2, canvas.height/2);
+             }
+             
              canvas.removeAttribute('data-caman-id');
          }
 
