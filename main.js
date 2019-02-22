@@ -199,6 +199,16 @@ const ctx = canvas.getContext('2d');
         document.querySelector('#text-3-container').classList.add('border-success');
         selectedTextOption = document.querySelector('#text-3-container .card-text').innerText;
     }
+    Caman('#canvas', img, function(){
+       if(selectedTextOption.length > 0 ){
+            ctx.font = '10em Verdana';
+            ctx.textAlign = "center";
+            ctx.fillStyle = "white";
+            ctx.fillText(selectedTextOption, canvas.width/2, canvas.height/2);
+       }
+    });
+     
+     console.log(selectedTextOption);
  });
 
  // Revert Filters
@@ -235,14 +245,7 @@ const ctx = canvas.getContext('2d');
          img.onload = function() {
              canvas.width = img.width;
              canvas.height = img.height;
-             ctx.drawImage(img, 0, 0, img.width, img.height);
-             if(selectedTextOption.length > 0 ){
-                ctx.font = '30em Verdana';
-                ctx.textAlign = "center";
-                ctx.fillStyle = "white";
-                ctx.fillText(selectedTextOption, canvas.width/2, canvas.height/2);
-             }
-             
+             ctx.drawImage(img, 0, 0, img.width, img.height);             
              canvas.removeAttribute('data-caman-id');
          }
 
