@@ -201,23 +201,30 @@
         selectedTextOption = document.querySelector('#text-3-container .card-text').innerText;
     }
     Caman('#canvas', img, function(){
+        //TODO: Remove and replace text when a different text box is clicked
        if(selectedTextOption.length > 0 ){
            /* original code that worked but not quite formatted */
             ctx.font = '10em Verdana';
             ctx.textAlign = "center";
             ctx.fillStyle = "white";
-            ctx.fillText(selectedTextOption, canvas.width/2, canvas.height/2);
+            ctx.fillText(selectedTextOption, canvas.width/4, canvas.height/4);
        }
     });
      
     // console.log(selectedTextOption);
 
     /* New fabric code for playing around */
-    var textObj = new fabric.Text(selectedTextOption,{
+    var textBoxObj = new fabric.Textbox(selectedTextOption,{
+        width: 200,
         fontStyle: 'italic',
-        fontFamily: 'Delicious'
+        fontFamily: 'Delicious',
+        textAlign: 'left',
+        lineHeight: 1.3,
+        shadow: 'rgba(0,0,0,0.3) 3px 3px 3px',
+        fontSize: 20
     });
-    textCanvas.add(textObj);
+    textBoxObj.setColor('blue');
+    textCanvas.add(textBoxObj);
  });
 
  // Revert Filters
