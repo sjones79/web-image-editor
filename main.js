@@ -1,5 +1,6 @@
-const canvas = document.querySelector('#canvas');
-const ctx = canvas.getContext('2d');
+ const canvas = document.querySelector('#canvas');
+ const ctx = canvas.getContext('2d');
+ const textCanvas = new fabric.Canvas('textcanvas');
 
  let img = new Image();
  let fileName = '';
@@ -201,6 +202,7 @@ const ctx = canvas.getContext('2d');
     }
     Caman('#canvas', img, function(){
        if(selectedTextOption.length > 0 ){
+           /* original code that worked but not quite formatted */
             ctx.font = '10em Verdana';
             ctx.textAlign = "center";
             ctx.fillStyle = "white";
@@ -208,7 +210,14 @@ const ctx = canvas.getContext('2d');
        }
     });
      
-     console.log(selectedTextOption);
+    // console.log(selectedTextOption);
+
+    /* New fabric code for playing around */
+    var textObj = new fabric.Text(selectedTextOption,{
+        fontStyle: 'italic',
+        fontFamily: 'Delicious'
+    });
+    textCanvas.add(textObj);
  });
 
  // Revert Filters
